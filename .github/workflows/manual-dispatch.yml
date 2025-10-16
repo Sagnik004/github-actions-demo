@@ -1,0 +1,31 @@
+name: Manual Dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+      ROTATE_CREDS:
+        description: Rotate credentials (true to rotate)
+        type: boolean
+        default: false
+      ENV_TYPE:
+        description: Target environment type
+        type: choice
+        options:
+          - SBX
+          - DEV
+          - QA
+          - STG
+          - PERF
+          - PROD
+        default: SBX
+
+jobs:
+  show-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print inputs
+        run: |
+          echo "ROTATE_CREDS: ${{ inputs.ROTATE_CREDS }}"
+          echo "ENV_TYPE: ${{ inputs.ENV_TYPE }}"
+
+

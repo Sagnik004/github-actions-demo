@@ -1,4 +1,4 @@
-name: Manual Dispatch
+name: My Actions Demo Workflow
 
 on:
   workflow_dispatch:
@@ -20,7 +20,7 @@ on:
         default: SBX
 
 jobs:
-  show-inputs:
+  display-inputs:
     runs-on: ubuntu-latest
     steps:
       - name: Print inputs
@@ -28,4 +28,13 @@ jobs:
           echo "ROTATE_CREDS: ${{ inputs.ROTATE_CREDS }}"
           echo "ENV_TYPE: ${{ inputs.ENV_TYPE }}"
 
+      - name: checkout
+        uses: actions/checkout@v4
 
+      - name: Run a one line script
+        run: echo "Hello, world!"
+
+      - name: Run a multi-line script
+        run: |
+          echo "Hello, hello!"
+          echo "Multi-line script!"
